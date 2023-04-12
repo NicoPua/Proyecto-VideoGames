@@ -1,9 +1,8 @@
 const {Videogame} = require("../db.js");
-
-const createVideoGame = async (data) =>{
+const createVideogame = (data) =>{
     const {id,name,description,platforms,image,released,rating} = data;
-    const newVideogame = await Videogame.create({id,name,description,platforms,image,released,rating});
+    const newVideogame = Videogame.create({id,name,description,platforms,image,released,rating});
     return newVideogame;
 }
 
-module.exports = createVideoGame;
+module.exports = createVideogame;
