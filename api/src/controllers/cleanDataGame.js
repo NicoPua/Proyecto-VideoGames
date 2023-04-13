@@ -8,7 +8,8 @@ const cleanDataGame = async (arrGameFromAPI) => {
             image: game.background_image,
             released: game.released,
             genres: game.genres.map((elem)=> elem.name),
-            rating: game.rating
+            rating: game.rating,
+            createinDb: false
          }
      });
     return cleanDataArr;
