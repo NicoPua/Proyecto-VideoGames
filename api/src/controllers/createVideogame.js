@@ -1,7 +1,7 @@
 const {Videogame} = require("../db.js");
-const createVideogame = (data) =>{
-    const {id,name,description,platforms,image,released,rating} = data;
-    const newVideogame = Videogame.create({id,name,description,platforms,image,released,rating});
+const createVideogame = async ({id,name,description,genre,platforms,image,released,rating}) =>{
+
+    const newVideogame = Videogame.create({id,name,description,genre,platforms,image,released,rating});
     return newVideogame;
 }
 
