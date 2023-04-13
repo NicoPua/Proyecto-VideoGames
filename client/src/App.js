@@ -1,10 +1,27 @@
 import './App.css';
+import Landing from "./views/Landing/Landing.jsx";
+import About from "./views/About/About.jsx";
+import NavBar from "./components/NavBar/NavBar.jsx";
+
+
+import { Switch, Route, useLocation} from "react-router-dom";
 
 function App() {
+  
+  const location = useLocation();
   return (
-    <div className="App">
-      <h1>Henry Videogames</h1>
-    </div>
+      <Switch>
+        {
+          location.pathname !== '/'?
+          <>
+          <Route path='/' component={NavBar}/> 
+          </> :
+          <>
+          <Route exact path="/" component={Landing}/>
+          </>
+        }
+        <Route path="/about" component={About}/>
+      </Switch>
   );
 }
 
