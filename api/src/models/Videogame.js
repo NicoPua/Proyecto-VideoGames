@@ -39,11 +39,11 @@ module.exports = (sequelize) => {
       type: DataTypes.DECIMAL
     },
 
-    /*createinDb: {
+    createinDb: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
-    }*/
+    }
   },{
     timestamps: false,
   })
