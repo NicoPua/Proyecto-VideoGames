@@ -1,9 +1,9 @@
-const {Videogame,Genre} = require("../db.js");
+const { Videogame,Genre } = require("../db.js");
 const saveGenresOnBDD = require("./guardarGenresOnBDD.js");
 const findGenres = require("./findGenres.js");
 
 const createVideogame = async ({id,name,description,genres,platforms,image,released,rating}) =>{
-    const newVideogame = Videogame.create({id,name,description,platforms,image,released,rating});
+    const newVideogame = await Videogame.create({id,name,description,platforms,image,released,rating});
    
     if(await Genre.count() === 0){
         const response = await findGenres();
