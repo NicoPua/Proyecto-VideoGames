@@ -18,7 +18,7 @@ router.get("/videogames/:id", getVideogameByID);    //LISTO
 
 router.get("/videogames", getVideogames);           //LISTO
 
-router.post("/videogames", postNewVideogame);       //LISTO
+router.post("/videogames", postNewVideogame);       //FALTA RELACIONAR
 
 router.get("/genres", getGenres);                   //LISTO
 

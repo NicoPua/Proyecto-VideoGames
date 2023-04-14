@@ -1,6 +1,6 @@
 
-const cleanDataGame = async (arrGameFromAPI) => {
-    const cleanDataArr = arrGameFromAPI.map((game) => {
+const cleanDataGame = async (arrGameByAPI) => {
+    const cleanDataArr = arrGameByAPI.map((game) => {
         return {
             id: game.id,
             name: game.name,
