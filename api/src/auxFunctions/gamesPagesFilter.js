@@ -2,7 +2,6 @@ const axios = require("axios");
 const {API_KEY} = process.env;
 const cleanDataGame = require("../controllers/cleanDataGame.js");
 
-
 const gamesPageFilter = async () => {
     let gamesFiltered = [];
     let URL = `https://api.rawg.io/api/games?key=${API_KEY}`;
