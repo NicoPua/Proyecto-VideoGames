@@ -1,5 +1,21 @@
+.globalCont{
+    display: flex;
+}
+
+.contVideogames{
+    background-color: aquamarine;
+    width: 80%;
+}
+
 .ContCards{
     background-color: blueviolet;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
+
+.filtersCont{
+    width: 20%;
+}
+
+
