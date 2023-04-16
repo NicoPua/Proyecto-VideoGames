@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import style from "./NavBar.module.css";
+
 import SearchBar from "../SearchBar/SearchBar";
 
 const NavBar = ({onSearch}) => {
     return (
-      <div>
+      <div className={style.ContBarra}>
         <div>
           <Link to='/home'>
               <p>HOME</p>

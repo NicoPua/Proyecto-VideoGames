@@ -14,23 +14,19 @@ function App() {
 
   const onSearch = (name) => {
     const URL = "http://localhost:3001";
-    if(games.find((game) => game.name == name)) return alert("This game already exists.")
+    if(games.find((game) => game.name === name)) return alert("This game already exists.")
     
     axios.get(`${URL}/videogames?name=${name}`)
     .then((response) => {
       let arrGames = response.data;
-      const existGame = arrGames.find((game) => game.name == name )
+      const existGame = arrGames.find((game) => game.name === name )
       if(!existGame) return alert("This game doesn't exist.")
 
       arrGames = arrGames.sort((g1, g2) => { 
-        if (g1.name < g2.name) {
-        return 1;
-        }
-        if (g1.name > g2.name) {
-          return -1;
-        }
-        return 0; }
-      )
+        if (g1.name < g2.name) return 1;
+        if (g1.name > g2.name) return -1;
+        return 0;
+      })
       setGames(arrGames);
     })
   }
