@@ -6,16 +6,17 @@ import About from "./views/About/About.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Home from "./views/Home/Home.jsx"
 
-import { Switch, Route, useLocation} from "react-router-dom";
+import { Route, useLocation} from "react-router-dom";
 import { useState } from 'react';
 
 function App() {
   const [games, setGames] = useState([]);
 
+  
   const onSearch = (name) => {
     const URL = "http://localhost:3001";
-    if(games.find((game) => game.name === name)) return alert("This game already exists.")
-    
+    if(games.find((game) => game.name === name)) return alert("You are watching this game right now.")
+    setGames([]);
     axios.get(`${URL}/videogames?name=${name}`)
     .then((response) => {
       let arrGames = response.data;
@@ -34,24 +35,15 @@ function App() {
 
   const location = useLocation();
   return (
-      <Switch>
-        {
-          location.pathname !== '/' ?
-          <>
-          <Route path='/'>
-            <NavBar onSearch={onSearch}/>
-          </Route> 
-          </> :
-          <>
-          <Route exact path="/" component={Landing}/>
-          </>
-        }
-        <Route path="/home" >
-          <Home games={games} />
-        </Route>
-
-        <Route path="/about" component={About}/>
-      </Switch>
+    <div>
+      { location.pathname !== '/' && (<Route path='/'> <NavBar onSearch={onSearch}/> </Route>)}
+      <Route exact path="/" component={Landing}/>
+      <Route path="/home" >
+        <Home games={games} />
+      </Route>
+      <Route path="/about" component={About}/>
+    </div>
+      
   );
 }
 
