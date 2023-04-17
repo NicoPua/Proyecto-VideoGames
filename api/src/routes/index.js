@@ -14,12 +14,12 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 router.use(express.json());
 
-router.get("/videogames/:id", getVideogameByID);    //LISTO
+router.get("/videogames/:id", getVideogameByID);    //LISTO a
 
-router.get("/videogames", getVideogames);           //LISTO
+router.get("/videogames", getVideogames);           //LISTO a
 
-router.post("/videogames", postNewVideogame);       //LISTO
+router.post("/videogames", postNewVideogame);       //LISTO a
 
-router.get("/genres", getGenres);                   //LISTO
+router.get("/genres", getGenres);                   //LISTO a
 
 module.exports = router;
