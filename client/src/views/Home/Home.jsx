@@ -1,9 +1,20 @@
 import Card from "../../components/Card/Card.jsx";
-import style from "./Home.module.css"
+import style from "./Home.module.css"   //CSS
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux"
 
-const Home = ({games}) => {
+import { getAllGames } from "../../redux/actions.js";
+
+const Home = () => {
     //select Order: onChange={ordenamiento}
-   
+    const games = useSelector((state) => state.allGames);
+
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        dispatch(getAllGames());
+    },[dispatch])
+
     return (
         <div className={style.globalCont}> 
             <div className={style.contVideogames}>
@@ -12,6 +23,7 @@ const Home = ({games}) => {
                     {games.map(({id,name,genres,platforms,image,rating,createinDb}) => {
                         return(
                             <Card
+                                key={id}
                                 id={id}
                                 name={name}
                                 genres={genres}
@@ -24,6 +36,7 @@ const Home = ({games}) => {
                     })}
                 </div> 
             </div>
+            
             <div className={style.filtersCont}>
                 <p>Filtrar juegos por:</p>
                 <select name="Order">
