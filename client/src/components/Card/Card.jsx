@@ -1,7 +1,6 @@
 import style from "./Card.module.css"
 
-const Card = ({id,name,genres,platforms,image,rating,createinDb}) => {
-    
+const Card = ({name,genres,platforms,image,rating}) => {
     return(
         <div className={style.Card}>
             <h4>{name}</h4>
