@@ -1,6 +1,7 @@
 const axios = require("axios");
-const {Videogame} = require("../db.js");
+const {Videogame,Genre} = require("../db.js");
 const cleanDataGame = require("./cleanDataGame.js");
+const { Op } = require("sequelize");
 
 const {API_KEY} = process.env;
 
@@ -11,11 +12,22 @@ const findGameByName = async (name) =>{
     gameByNameAPI = await cleanDataGame(gameByNameAPI);                     //Limpio y filtro los datos que necesito.
     for (let i = 0; i < 15; i++) { cleanGameAPI[i] = gameByNameAPI[i] }     //Filtro los primeros 15 juegos en un nuevo array.
 
-    let gameByNameBD = await Videogame.findAll({ where: { name } });        //Busco el name del juego en la DB
-
-    if(!cleanGameAPI.length && !gameByNameBD.length) throw new Error("This game doesn't exists")//Si no encuentra el juego, error.
-
-    const gameByName = [...cleanGameAPI, ...gameByNameBD];  //Junto elementos de ambos arrays para luego enviarlo.
+    const gameByNameBD = await Videogame.findAll({        //Busco el name del juego en la DB
+        where: { name: {[Op.iLike]: name} },
+        include: {
+            model: Genre,
+            attributes: ["name"],
+            through: {
+                attributes: []
+            }
+        }
+    });      
+     
+    //Si no encuentra el juego, error.
+    if(!cleanGameAPI.length && !gameByNameBD.length) throw new Error("This game doesn't exists")
+    
+    //Junto elementos de ambos arrays para luego enviarlo.
+    const gameByName = [...cleanGameAPI, ...gameByNameBD];  
     return gameByName;
 }
 
