@@ -14,6 +14,10 @@ const NavBar = ({onSearch}) => {
           <Link to='/about'>
               <p>ABOUT</p>
           </Link>
+
+          <Link to='/create'>
+              <p>Create Game</p>
+          </Link>
         </div>
         
         <div>
