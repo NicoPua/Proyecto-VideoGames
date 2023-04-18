@@ -2,49 +2,57 @@ import Card from "../../components/Card/Card.jsx";
 import style from "./Home.module.css"   //CSS
 
 import Paginado from "../../components/Paginado/Paginado.jsx";
+import Filters from "../../components/Filters/Filters.jsx";
+import Loading from "../../views/Loading/Loading";
 
-//import { useEffect } from 'react';
-import { useDispatch } from "react-redux"
-import { filterGenres, orderGames } from "../../redux/actions.js";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
+let flag = false;
 
-const Home = ({games}) => {
-    const dispatch = useDispatch();
-        
+const Home = () => {
+    const games = useSelector((state) => state.filterGames);
+    //Paginado----------------------------------------------------------
     const [currentPage,setCurrentPage] = useState(1)
-    const [gamesPag] = useState(15);
-    //const [order,setOrder] = useState(" ");
-    //const [loading, setLoading] = useState(true)
-
+    const [gamesPag] = useState(15);    
     const lastGameIndex = currentPage * gamesPag;
     const firstGameIndex = lastGameIndex - gamesPag;
-    const currentGames = games.slice(firstGameIndex,lastGameIndex)
+    const currentGames = games.slice(firstGameIndex,lastGameIndex); 
+    //-------------------------------------------------------------------
+    const [loading, setLoading] = useState(true)
+    
 
-    const ordenamiento = (event) => { dispatch(orderGames(event.target.value)) }
-    const filtro = (event) =>{ dispatch(filterGenres(event.target.value)) }
+    const changeLoad = () =>{
+        if(flag === false){
+            setTimeout(() => {
+                setLoading(false);
+            }, 3000);  
+            flag = true;
+        }
+    }
+    if(loading){
+        changeLoad();
+        return (
+            <div className={style.globalCont}>
+                <div className={style.filtersCont}>
+                    <Filters />
+                </div>
+                <div className={style.contVideogames}>
+                    <h2>Videogames:</h2>
+                    <Loading/>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className={style.globalCont}> 
             <div className={style.filtersCont}>
-                <p>Filtrar juegos por:</p>
-                <select name="Order" onChange={ordenamiento}>
-                    <option value= "AllGames">All Games</option>
-                    <option value="Ascendente">Ascendente</option>
-                    <option value="Descendente">Descendente</option>
-                    <option value="Rating">Rating</option>
-                </select>
-                <br/>
-                <select name="Datatype" onChange={filtro}>
-                    <option value= "AllGames">All Games</option>
-                    <option value= "Stored Games">Stored Games</option>
-                    <option value= "Created Games">Created Games</option>
-                </select>
+                <Filters />
             </div>
 
             <div className={style.contVideogames}>
                 <h2>Videogames:</h2>
-
                 <Paginado currentPage={currentPage} setCurrentPage={setCurrentPage} cantGames={games.length} gamesPag={gamesPag} />
 
                 <div className={style.ContCards}>

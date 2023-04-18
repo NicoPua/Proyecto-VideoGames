@@ -1,5 +1,12 @@
-.ContBarra{
+.contBarra{
     background-color:darkgreen;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.contOptions{
+    width: 60%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
