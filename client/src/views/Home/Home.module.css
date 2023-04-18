@@ -15,7 +15,11 @@
 }
 
 .filtersCont{
+    background-color:darkred;
+    color:white;
     width: 15%;
+    display:flex;
+    flex-direction: column;
 }
 
 
