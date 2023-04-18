@@ -5,8 +5,8 @@ import SearchBar from "../SearchBar/SearchBar";
 
 const NavBar = ({onSearch}) => {
     return (
-      <div className={style.ContBarra}>
-        <div>
+      <div className={style.contBarra}>
+        <div className={style.contOptions}>
           <Link to='/home'>
               <p>HOME</p>
           </Link>
