@@ -7,26 +7,32 @@ import Home from "./views/Home/Home.jsx"
 import Form from './views/Form/Form';
 
 import { Route, useLocation} from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getAllGames } from './redux/actions';
+import { getAllGames, getGenres } from './redux/actions';
 
 function App() {
-  const games = useSelector((state) => state.filterGames);
+  
   const dispatch = useDispatch();
   
   useEffect(() => {  
     dispatch(getAllGames());
-  },[])
+  },[dispatch])
+
+  useEffect(() => {  
+    dispatch(getGenres());
+  },[dispatch])
   
   const location = useLocation();
   return (
     <div>
       { location.pathname !== '/' && (<Route path='/'> <NavBar /> </Route>)}
       <Route exact path="/" component={Landing}/>
+
       <Route path="/home" >
-        <Home games={games}/>
+        <Home />
       </Route>
+
       <Route path="/about" component={About}/>
       <Route path="/create" component={Form}/>
     </div>
