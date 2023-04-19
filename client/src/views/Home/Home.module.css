@@ -1,21 +1,35 @@
 .globalCont{
+    height: 1650px;
     display: flex;
 }
 
+.contPags{
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Title{
+    color:white;
+}
+
 .contVideogames{
-    background-color: aquamarine;
-    width: 80%;
+    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-kbDs6oCfIIx7V6o9AWxADUe2plUAuJDOwA&usqp=CAU");
+    background-size: cover;
+    width: 100%;
 }
 
 .ContCards{
-    background-color: blueviolet;
+    background-size: cover;
+    height: 1515px;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
 
 .filtersCont{
-    background-color:darkred;
+    background: url("https://i.pinimg.com/originals/f6/bd/df/f6bddffb9c4161a4de02a11006581c22.jpg");
+    background-size: cover;
     color:white;
     width: 15%;
     display:flex;

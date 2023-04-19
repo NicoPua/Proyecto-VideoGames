@@ -8,8 +8,6 @@ import Loading from "../../views/Loading/Loading";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-let flag = false;
-
 const Home = () => {
     const games = useSelector((state) => state.filterGames);
     //Paginado----------------------------------------------------------
@@ -19,16 +17,12 @@ const Home = () => {
     const firstGameIndex = lastGameIndex - gamesPag;
     const currentGames = games.slice(firstGameIndex,lastGameIndex); 
     //-------------------------------------------------------------------
+    //Loading en Cards---------------------------------------------------
     const [loading, setLoading] = useState(true)
-    
-
     const changeLoad = () =>{
-        if(flag === false){
-            setTimeout(() => {
-                setLoading(false);
-            }, 3000);  
-            flag = true;
-        }
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000);  
     }
     if(loading){
         changeLoad();
@@ -38,13 +32,15 @@ const Home = () => {
                     <Filters />
                 </div>
                 <div className={style.contVideogames}>
-                    <h2>Videogames:</h2>
-                    <Loading/>
+                    <div className={style.contPags}>
+                        <h2>Videogames:</h2>
+                        <Loading/>
+                    </div>
                 </div>
             </div>
         )
     }
-
+    //-------------------------------------------------------------------
     return (
         <div className={style.globalCont}> 
             <div className={style.filtersCont}>
@@ -52,8 +48,11 @@ const Home = () => {
             </div>
 
             <div className={style.contVideogames}>
-                <h2>Videogames:</h2>
-                <Paginado currentPage={currentPage} setCurrentPage={setCurrentPage} cantGames={games.length} gamesPag={gamesPag} />
+                <div className={style.contPags}>
+                    <h2 className={style.Title}>Videogames:</h2>
+                    <Paginado currentPage={currentPage} setCurrentPage={setCurrentPage} cantGames={games.length} gamesPag={gamesPag} />
+                </div>
+               
 
                 <div className={style.ContCards}>
                     {currentGames?.map(({id,name,genres,image,rating,createinDb}) => {
