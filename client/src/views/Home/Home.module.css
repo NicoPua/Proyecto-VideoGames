@@ -4,6 +4,7 @@
 }
 
 .contPags{
+    margin-right: 40px;
     margin-left: 40px;
     display: flex;
     flex-direction: column;
@@ -11,15 +12,20 @@
 
 .Title{
     color:white;
+    text-shadow: 0 0 6px #000000;
+    
 }
 
+
 .contVideogames{
-    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-kbDs6oCfIIx7V6o9AWxADUe2plUAuJDOwA&usqp=CAU");
+    background: url("https://i.blogs.es/126593/super-mario-bros-la-pelicula/1366_2000.jpeg");
     background-size: cover;
+    background-attachment: fixed;
     width: 100%;
 }
 
 .ContCards{
+
     background-size: cover;
     height: 1515px;
     display: flex;

@@ -8,15 +8,15 @@ const NavBar = ({onSearch}) => {
       <div className={style.contBarra}>
         <div className={style.contOptions}>
           <Link to='/home'>
-              <p>HOME</p>
-          </Link>
-
-          <Link to='/about'>
-              <p>ABOUT</p>
+              <p>🏡HOME</p>
           </Link>
 
           <Link to='/create'>
-              <p>Create Game</p>
+              <p>🎮ADD YOUR GAME</p>
+          </Link>
+
+          <Link to='/about'>
+              <p>📑ABOUT</p>
           </Link>
         </div>
         

@@ -1,7 +1,7 @@
 import style from "./Filters.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { filterGamesDBorAPI, filterGenres, getGenres, orderGames } from "../../redux/actions"
-import { useEffect } from "react";
+import { filterGamesDBorAPI, filterGenres, orderGames } from "../../redux/actions"
+
 
 const Filters = () => {
     const dispatch = useDispatch();
@@ -16,10 +16,6 @@ const Filters = () => {
         dispatch(filterGenres(event.target.value))
     }
     const filterDbAPI = (event) => { dispatch(filterGamesDBorAPI(event.target.value)) } 
-
-    useEffect(()=>{
-        dispatch(getGenres());
-    },[dispatch])
 
     return (
         <div className={style.contFilters}>

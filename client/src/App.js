@@ -10,6 +10,7 @@ import { Route, useLocation} from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getAllGames, getGenres } from './redux/actions';
+import Detail from './views/Detail/Detail';
 
 function App() {
   
@@ -35,6 +36,7 @@ function App() {
 
       <Route path="/about" component={About}/>
       <Route path="/create" component={Form}/>
+      <Route path="/detail/:name" component={Detail}/>
     </div>
       
   );

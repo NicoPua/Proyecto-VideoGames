@@ -33,7 +33,7 @@ const Home = () => {
                 </div>
                 <div className={style.contVideogames}>
                     <div className={style.contPags}>
-                        <h2>Videogames:</h2>
+                        <h2 className={style.Title}>🕹️ Videogames:</h2>
                         <Loading/>
                     </div>
                 </div>
@@ -44,12 +44,12 @@ const Home = () => {
     return (
         <div className={style.globalCont}> 
             <div className={style.filtersCont}>
-                <Filters />
+                <Filters setCurrentPage={setCurrentPage}/>
             </div>
 
             <div className={style.contVideogames}>
                 <div className={style.contPags}>
-                    <h2 className={style.Title}>Videogames:</h2>
+                    <h2 className={style.Title}>🕹️ Videogames:</h2>
                     <Paginado currentPage={currentPage} setCurrentPage={setCurrentPage} cantGames={games.length} gamesPag={gamesPag} />
                 </div>
                
@@ -68,7 +68,7 @@ const Home = () => {
                             />
                         );
                     })}
-                </div> 
+                </div>    
             </div>
         </div>
     )
