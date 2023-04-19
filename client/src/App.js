@@ -7,13 +7,13 @@ import Home from "./views/Home/Home.jsx"
 import Form from './views/Form/Form';
 
 import { Route, useLocation} from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getAllGames, getGenres } from './redux/actions';
 import Detail from './views/Detail/Detail';
 
 function App() {
-  
+  const allGenres = useSelector((state)=> state.genresGames);
   const dispatch = useDispatch();
   
   useEffect(() => {  
@@ -31,13 +31,16 @@ function App() {
       <Route exact path="/" component={Landing}/>
 
       <Route path="/home" >
-        <Home />
+        <Home allGenres={allGenres}/>
       </Route>
+
       <Route path="/about" component={About}/>
-      <Route path="/create" component={Form}/>
       <Route path="/detail/:idGame" component={Detail}/>
-    </div>
       
+      <Route path="/create">
+        <Form allGenres={allGenres}/>
+      </Route>
+    </div>  
   );
 }
 

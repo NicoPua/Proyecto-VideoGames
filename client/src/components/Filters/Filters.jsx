@@ -1,11 +1,10 @@
 import style from "./Filters.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { filterGamesDBorAPI, filterGenres, orderGames } from "../../redux/actions"
 
 
-const Filters = () => {
+const Filters = ({allGenres}) => {
     const dispatch = useDispatch();
-    const allGenres = useSelector((state)=> state.genresGames);
 
     const ordenamiento = (event) => {
         event.preventDefault();
