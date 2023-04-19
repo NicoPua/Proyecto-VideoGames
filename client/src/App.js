@@ -33,10 +33,9 @@ function App() {
       <Route path="/home" >
         <Home />
       </Route>
-
       <Route path="/about" component={About}/>
       <Route path="/create" component={Form}/>
-      <Route path="/detail/:name" component={Detail}/>
+      <Route path="/detail/:idGame" component={Detail}/>
     </div>
       
   );

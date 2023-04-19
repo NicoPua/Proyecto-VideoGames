@@ -1,9 +1,12 @@
 import style from "./Card.module.css"
+import { Link } from "react-router-dom";
 
-const Card = ({name,genres,image,rating}) => {
+const Card = ({id,name,genres,image,rating}) => {
     return(
         <div className={style.Card}>
-            <h4>{name}</h4>
+            <Link to={`/detail/${id}`}>
+                <h4>{name}</h4>
+            </Link>
             <img className={style.imgCards} src={image} alt="img" />
             <p>Genre: {genres.toString()}</p>
             <p>Rating: {rating}</p>
