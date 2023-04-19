@@ -34,8 +34,13 @@ const rootReducer = (state = initialState,action) =>{
             const GamesFiltered = (action.payload === "Genres")? state.allGames : copyGames.filter((game)=>{
                 if(game.createinDb === false) return game.genres.includes(action.payload);
                 if(game.createinDb === true) {
-                    const gameFilter = game.Genres.map((genre)=> genre.name.includes(action.payload));
-                    return gameFilter;
+                    let gameFilter = [];
+                    game.Genres.map((genre)=> {
+                        gameFilter.push(Object.values(genre))}
+                    );
+                    console.log(gameFilter.flat());
+                    return gameFilter.includes(action.payload)
+                    
                 }
             })
         return {

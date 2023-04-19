@@ -1,16 +1,28 @@
+import { useEffect } from "react";
 import useGameDetail from "../../hooks/useGameDetail";
 import style from "./Detail.module.css";
+import { getAllGames } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 const Detail = () => {
     const game = useGameDetail();
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+      dispatch(getAllGames())
+    },[dispatch])
+
     return (
       <div className={style.contGame}>
         {game.name? (<>
-          <h2>Game Information</h2>
-          <div>
-            <h3>{game.name}</h3>
-            <img className={style.imgGame} src={game.image} alt=""/>
-            <div>          
+          <div className={style.contAllInfo}>
+            <div className={style.contTitleImg}>
+              <h2>Game Information</h2>
+              <h3>{game.name}</h3>
+              <img className={style.imgGame} src={game.image} alt=""/>
+            </div>
+    
+            <div className={style.detailGame}>          
               {(game.createinDb === false)? <>
                 <p>ID: {game.id}</p>
                 <p>Platforms: {game.platforms?.toString()}</p>

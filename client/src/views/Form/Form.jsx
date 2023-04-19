@@ -12,7 +12,7 @@ const Form = ({allGenres}) => {
                 <label>Descripción:</label>
 
                 <label>Platforms</label>
-
+                
                 <label>Released</label>
 
                 <label>Rating</label>
