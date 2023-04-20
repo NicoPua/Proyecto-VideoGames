@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import style from "./Form.module.css"
-import { useEffect, useState } from "react"
-import { createGames, getAllGames } from "../../redux/actions"
+import {  useState } from "react"
+import { createGames } from "../../redux/actions"
 
 const Form = ({allGenres}) => {
     const allPlatforms = useSelector((state) => state.allPlatforms)
@@ -20,25 +20,21 @@ const Form = ({allGenres}) => {
     const handleChange = (event) => {
         const prop = event.target.name;
         const value = event.target.value;
-
         setGameData({...gameData, [prop]: value})
     }
 
     const AddPlatform = (event) => {
         const isChecked = event.target.checked;
         const Value = event.target.value;
-
         if(isChecked){
             setGameData({...gameData, platforms: [...gameData.platforms, event.target.value] })
         }else{
             setGameData({...gameData, platforms: gameData.platforms.filter((plat) => plat !== Value)})
         }
     }
-
     const AddGenres = (event) => {
         const isChecked = event.target.checked;
         const Value = event.target.value;
-
         if(isChecked){
             setGameData({...gameData, genres: [...gameData.genres, event.target.value] })
         }else{
@@ -47,15 +43,9 @@ const Form = ({allGenres}) => {
     }
 
     const handleSubmit = (event) => {
-        event.preventDefault();
         dispatch(createGames(gameData));
     }
 
-    useEffect(()=>{
-        return ()=>{
-            dispatch(getAllGames())
-        }
-    },[dispatch])
 
     return(
         <div className={style.globalCont}>
@@ -67,7 +57,7 @@ const Form = ({allGenres}) => {
                     <input type="text" name="name" onChange={handleChange} value={gameData.name}/>
 
                     <label htmlFor="image">Image URL:</label>
-                    <input type="url" name="image" onChange={handleChange} value={gameData.image}></input>
+                    <input type="text" name="image" onChange={handleChange} value={gameData.image}></input>
 
                     <label htmlFor="description">Description:</label>
                     <textarea name="description" onChange={handleChange} value={gameData.description}></textarea>
