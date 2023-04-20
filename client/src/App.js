@@ -27,8 +27,7 @@ function App() {
   useEffect(()=>{
     dispatch(getAllPlatforms());
   },[dispatch])
-  
-  
+
   const location = useLocation();
   return (
     <div>

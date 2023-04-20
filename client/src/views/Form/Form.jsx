@@ -1,27 +1,37 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import style from "./Form.module.css"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { createGames, getAllGames } from "../../redux/actions"
 
 const Form = ({allGenres}) => {
     const allPlatforms = useSelector((state) => state.allPlatforms)
+    const dispatch = useDispatch();
 
-    const [gameData,setVideogame] = useState({
+    const [gameData,setGameData] = useState({
         name:"",
         image:"",
         description:"",
         platforms: [],
         released: "",
-        rating: undefined,
+        rating: "",
         genres: []
     })
+
+    const handleChange = (event) => {
+        const prop = event.target.name;
+        const value = event.target.value;
+
+        setGameData({...gameData, [prop]: value})
+    }
+
     const AddPlatform = (event) => {
         const isChecked = event.target.checked;
         const Value = event.target.value;
 
         if(isChecked){
-            setVideogame({...gameData, platforms: [...gameData.platforms, event.target.value] })
+            setGameData({...gameData, platforms: [...gameData.platforms, event.target.value] })
         }else{
-            setVideogame({...gameData, platforms: gameData.platforms.filter((plat) => plat !== Value)})
+            setGameData({...gameData, platforms: gameData.platforms.filter((plat) => plat !== Value)})
         }
     }
 
@@ -30,49 +40,60 @@ const Form = ({allGenres}) => {
         const Value = event.target.value;
 
         if(isChecked){
-            setVideogame({...gameData, genres: [...gameData.genres, event.target.value] })
+            setGameData({...gameData, genres: [...gameData.genres, event.target.value] })
         }else{
-            setVideogame({...gameData, genres: gameData.genres.filter((gen) => gen !== Value)})
+            setGameData({...gameData, genres: gameData.genres.filter((gen) => gen !== Value)})
         }
     }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        dispatch(createGames(gameData));
+    }
+
+    useEffect(()=>{
+        return ()=>{
+            dispatch(getAllGames())
+        }
+    },[dispatch])
 
     return(
         <div className={style.globalCont}>
             <div className={style.contForm}>
                 <h2>Add your game</h2>
 
-                <form className={style.formCont}>
-                    <label>Name</label>
-                    <input type="text" name="name" value={gameData.name}/>
+                <form onSubmit={handleSubmit} className={style.formCont}>
+                    <label htmlFor="name">Name</label>
+                    <input type="text" name="name" onChange={handleChange} value={gameData.name}/>
 
-                    <label>Image URL:</label>
-                    <input type="url" id="image" name="image" value={gameData.image}></input>
+                    <label htmlFor="image">Image URL:</label>
+                    <input type="url" name="image" onChange={handleChange} value={gameData.image}></input>
 
-                    <label>Description:</label>
-                    <textarea id="description" name="description" value={gameData.description}></textarea>
+                    <label htmlFor="description">Description:</label>
+                    <textarea name="description" onChange={handleChange} value={gameData.description}></textarea>
 
-                    <label>Platforms:</label>
+                    <label htmlFor="platforms">Platforms:</label>
                     <div>
                         {allPlatforms?.map((plat)=>{
                                 return (<>
                                     <input type="checkbox" onClick={(event) => AddPlatform(event)} value={plat}/>
-                                    <label for={plat}>{plat}</label>
+                                    <label key={plat} htmlFor={plat}>{plat}</label>
                                 </>)     
                             })}
                     </div>
 
-                    <label>Released:</label>
-                    <input type="date" id="released" name="released" value={gameData.released}></input>
+                    <label htmlFor="released">Released:</label>
+                    <input type="date" name="released" onChange={handleChange} value={gameData.released}></input>
                     
-                    <label>Rating</label>
-                    <input type="number" id="rating" name="rating" step="0.01" value={gameData.rating}></input>
+                    <label htmlFor="rating">Rating</label>
+                    <input type="number" name="rating" onChange={handleChange} step="0.01" value={gameData.rating}></input>
 
-                    <label>Choose your favorites Genres:</label>      
+                    <label htmlFor="genres">Choose your favorites Genres:</label>      
                     <div>
                         {allGenres?.map((genre)=>{
                                 return (<>
                                     <input type="checkbox" onClick={(event) => AddGenres(event)} value={genre}/>
-                                    <label for={genre}>{genre}</label>
+                                    <label htmlFor={genre}>{genre}</label>
                                 </>)     
                             })}
                     </div>

@@ -41,10 +41,10 @@ export const getAllPlatforms = () => {
       };
 } 
 
-export const createGames = (videogame) =>{
-    return function() {
-        axios.post("http://localhost:3001/videogames", videogame)         //GUARDO la información de "character" en la URL/fav
-        .then((res) => console.log("Videojuego Agregado"));
+export const createGames = async (videogame) =>{
+    return async function() {
+        await axios.post("http://localhost:3001/videogames", videogame)         //GUARDO la información de "character" en la URL/fav
+        console.log("Videojuego Agregado");
     }
  }
 
