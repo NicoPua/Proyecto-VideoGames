@@ -9,7 +9,7 @@ import Form from './views/Form/Form';
 import { Route, useLocation} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getAllGames, getGenres } from './redux/actions';
+import { getAllGames, getAllPlatforms, getGenres } from './redux/actions';
 import Detail from './views/Detail/Detail';
 
 function App() {
@@ -23,6 +23,11 @@ function App() {
   useEffect(() => {  
     dispatch(getGenres());
   },[dispatch])
+
+  useEffect(()=>{
+    dispatch(getAllPlatforms());
+  },[dispatch])
+  
   
   const location = useLocation();
   return (

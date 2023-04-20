@@ -1,9 +1,10 @@
-import { GET_ALLGAMES, GET_GENRES, GET_GAME_DETAIL, ORDER_GAMES, FILTER_GENDER_GAMES, FILTER_GAMES_DB_API, CLEAN_DETAIL} from "./actions";
+import { GET_ALLGAMES, GET_GENRES, GET_GAME_DETAIL, GET_ALL_PLATFORMS, ORDER_GAMES, FILTER_GENDER_GAMES, FILTER_GAMES_DB_API, CLEAN_DETAIL} from "./actions";
 
 const initialState = {
     allGames: [],
     filterGames: [],
     genresGames: [],
+    allPlatforms: [],
     gameDetails: {}
 }
 
@@ -22,6 +23,10 @@ const rootReducer = (state = initialState,action) =>{
             ...state,
             genresGames: action.payload
         }
+        case GET_ALL_PLATFORMS: return {
+            ...state,
+            allPlatforms: action.payload
+        }
         case CLEAN_DETAIL: return {
             ...state,
             gameDetails: {}
@@ -32,16 +37,9 @@ const rootReducer = (state = initialState,action) =>{
             const copyGames = state.allGames;
 
             const GamesFiltered = (action.payload === "Genres")? state.allGames : copyGames.filter((game)=>{
-                if(game.createinDb === false) return game.genres.includes(action.payload);
-                if(game.createinDb === true) {
-                    let gameFilter = [];
-                    game.Genres.map((genre)=> {
-                        gameFilter.push(Object.values(genre))}
-                    );
-                    console.log(gameFilter.flat());
-                    return gameFilter.includes(action.payload)
-                    
-                }
+                return !game.createinDb
+                ? game.genres.includes(action.payload)  //Para juegos API
+                : game.Genres.map((genre)=> genre.name).includes(action.payload); //Para juegos DB
             })
         return {
             ...state,
