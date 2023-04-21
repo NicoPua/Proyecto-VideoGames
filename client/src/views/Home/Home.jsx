@@ -17,6 +17,11 @@ const Home = ({allGenres}) => {
     const firstGameIndex = lastGameIndex - gamesPag;
     const currentGames = games.slice(firstGameIndex,lastGameIndex); 
     //-------------------------------------------------------------------
+    //onSearch-----------------------------------------------------------
+
+
+    //-------------------------------------------------------------------
+
     //Loading en Cards---------------------------------------------------
     const [loading, setLoading] = useState(true)
     const changeLoad = () =>{
@@ -41,6 +46,7 @@ const Home = ({allGenres}) => {
         )
     }
     //-------------------------------------------------------------------
+
     return (
         <div className={style.globalCont}> 
             <div className={style.filtersCont}>

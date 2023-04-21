@@ -1,10 +1,13 @@
-import { useDispatch, useSelector } from "react-redux"
 import style from "./Form.module.css"
-import {  useState } from "react"
+
+import { useDispatch, useSelector } from "react-redux"
+import { useState } from "react"
 import { createGames } from "../../redux/actions"
 
+import validation from "./validation"
+
 const Form = ({allGenres}) => {
-    const allPlatforms = useSelector((state) => state.allPlatforms)
+    const allPlatforms = useSelector((state) => state.allPlatforms);
     const dispatch = useDispatch();
 
     const [gameData,setGameData] = useState({
@@ -17,10 +20,20 @@ const Form = ({allGenres}) => {
         genres: []
     })
 
+    const [errors,setErrors] = useState({
+        name:"Agregar información.",
+        image:"Agregar información.",
+        description:"Agregar información.",
+        released: "Agregar información.",
+        rating: "Agregar información.",
+    })
+
     const handleChange = (event) => {
         const prop = event.target.name;
         const value = event.target.value;
+
         setGameData({...gameData, [prop]: value})
+        setErrors(validation({...gameData, [prop]: value}))
     }
 
     const AddPlatform = (event) => {
@@ -42,11 +55,15 @@ const Form = ({allGenres}) => {
         }
     }
 
-    const handleSubmit = (event) => {
-        dispatch(createGames(gameData));
+    const handleSubmit = () => {
+        if((gameData.genres.length === 0 || gameData.platforms.length === 0)){ 
+            return alert("Please, you must choose at least one genre and one platform.")
+        }else{
+            dispatch(createGames(gameData));
+        }
     }
 
-
+    
     return(
         <div className={style.globalCont}>
             <div className={style.contForm}>
@@ -89,6 +106,17 @@ const Form = ({allGenres}) => {
                     </div>
                     <button>Create Game</button>
                 </form>
+            </div>
+
+            <div className={style.infoValidation}>
+                <h2>Validaciones:</h2>
+                <ul className={style.uList}>
+                    <li className={errors.name? style.errorName: style.validName} >Name: {errors.name? errors.name : "Información correcta."}</li>
+                    <li className={errors.image? style.errorImg: style.validImg}>Image: {errors.image? errors.image : "Información correcta."}</li>
+                    <li className={errors.description? style.errorDes : style.validDes}>Description: {errors.description? errors.description : "Información correcta."}</li>
+                    <li className={errors.released? style.errorRel: style.validRel}>Released: {errors.released? errors.released : "Información correcta."}</li>
+                    <li className={errors.rating? style.errorRat: style.validRat}>Rating: {errors.rating? errors.rating : "Información correcta."}</li>
+                </ul>
             </div>
         </div>
     )
