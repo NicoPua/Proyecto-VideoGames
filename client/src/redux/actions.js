@@ -44,7 +44,7 @@ export const getAllPlatforms = () => {
 export const createGames = (videogame) =>{
     return async function() {
         await axios.post("http://localhost:3001/videogames", videogame)         //GUARDO la información de "character" en la URL/fav
-        console.log(videogame);
+        alert("Videogame added successfully")
         console.log("Videojuego Agregado");
     }
  }

@@ -50,14 +50,14 @@ const Form = ({allGenres}) => {
     return(
         <div className={style.globalCont}>
             <div className={style.contForm}>
-                <h2>Add your game</h2>
+                <h2>ADD YOUR GAME</h2>
 
                 <form onSubmit={handleSubmit} className={style.formCont}>
                     <label htmlFor="name">Name</label>
                     <input type="text" name="name" onChange={handleChange} value={gameData.name}/>
 
                     <label htmlFor="image">Image URL:</label>
-                    <input type="text" name="image" onChange={handleChange} value={gameData.image}></input>
+                    <input type="url" name="image" onChange={handleChange} value={gameData.image}></input>
 
                     <label htmlFor="description">Description:</label>
                     <textarea name="description" onChange={handleChange} value={gameData.description}></textarea>
