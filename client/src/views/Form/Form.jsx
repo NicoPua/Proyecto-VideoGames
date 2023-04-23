@@ -56,11 +56,8 @@ const Form = ({allGenres}) => {
     }
 
     const handleSubmit = () => {
-        if((gameData.genres.length === 0 || gameData.platforms.length === 0)){ 
-            return alert("Please, you must choose at least one genre and one platform.")
-        }else{
-            dispatch(createGames(gameData));
-        }
+        dispatch(createGames(gameData));
+        alert("The videogame was successfully created.")
     }
 
     const ratingInCero = (event) =>{

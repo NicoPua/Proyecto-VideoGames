@@ -50,10 +50,9 @@ export const getGameByName = (name) => {
 }
 
 export const createGames = (videogame) =>{
-    return async function() {
-        await axios.post("http://localhost:3001/videogames", videogame)         //GUARDO la información de "character" en la URL/fav
-        alert("Videogame added successfully")
-        console.log("Videojuego Agregado");
+    return function() {
+        axios.post("http://localhost:3001/videogames", videogame)         //GUARDO la información de "character" en la URL/fav
+        .catch((error)=> alert("The game could not be created: it doesn't meet the validation requirements."))
     }
  }
 
