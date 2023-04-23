@@ -35,7 +35,7 @@ const Detail = () => {
                 <p>Platforms: {game.platforms?.toString()}</p>
                 <p>Description: {game.description}</p>
                 <p>Released: {game.released}</p>
-                <p>Rating: {game.rating? game.rating.slice(0,5) : "Unavailable information"}</p>
+                <p>Rating: {game.rating.slice(0,4)}</p>
                 <p>Genres: {(game.Genres?.map((genre)=> genre.name)).toString()}</p>
               </>}                                     
             </div>

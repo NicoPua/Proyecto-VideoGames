@@ -16,7 +16,7 @@ const Form = ({allGenres}) => {
         description:"",
         platforms: [],
         released: "",
-        rating: "",
+        rating: 0,
         genres: []
     })
 
@@ -63,6 +63,11 @@ const Form = ({allGenres}) => {
         }
     }
 
+    const ratingInCero = (event) =>{
+        if(!gameData.rating){
+            event.target.value = 0;
+        }
+    }
     
     return(
         <div className={style.globalCont}>
@@ -93,7 +98,11 @@ const Form = ({allGenres}) => {
                     <input type="date" name="released" onChange={handleChange} value={gameData.released}></input>
                     
                     <label htmlFor="rating">Rating</label>
-                    <input type="number" name="rating" onChange={handleChange} step="0.01" value={gameData.rating}></input>
+                    <input 
+                        type="number"
+                        name="rating" onBlur={(event)=> ratingInCero(event)}
+                        onChange={handleChange} step="0.01"
+                        value={gameData.rating}></input>
 
                     <label htmlFor="genres">Choose your favorites Genres:</label>      
                     <div>

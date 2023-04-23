@@ -23,10 +23,11 @@ let validation = (gameData) => {
         errors.released = "Este campo NO debe estar vacío.";
     }
     
-    if(!gameData.rating){
-        errors.rating = "Este campo NO debe estar vacío.";
-    }else if(gameData.rating > 10){
+
+    if(gameData.rating > 10){
         errors.rating = "El rating no puede ser mayor de 10.";
+    }else if(gameData.rating < 0){
+        errors.rating = "El rating no puede ser menor de 0.";
     }else if(gameData.rating.length > 4){
         errors.rating = "El rating no debe tener más de dos decimales.";
     }

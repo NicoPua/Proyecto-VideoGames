@@ -17,7 +17,7 @@ const Card = ({id,name,genres,image,rating,createinDb}) => {
                 </Link>
                 <img className={style.imgCards} src={image} alt="img" />
                 <p>Genre: {(genres.map((genre)=> genre.name)).toString()}</p>
-                <p>Rating: {rating}</p>
+                <p>Rating: {rating.slice(0,4)}</p>
             </>
             }
             
