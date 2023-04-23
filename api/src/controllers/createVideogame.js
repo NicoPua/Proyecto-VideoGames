@@ -15,9 +15,9 @@ const createVideogame = async ({id,name,description,genres,platforms,image,relea
 
     const newVideogame = await Videogame.create({id,name,description,platforms,image,released,rating});
    
-    if(await Genre.count() === 0){
+    if(await Genre.count() === 0){                  //Consulto si hay o no hay registros en la base de datos;
         const response = await findGenres();
-        await saveGenresOnBDD(response);  //Consulto si hay o no hay registros en la base de datos;
+        await saveGenresOnBDD(response);  
     }
     
     const foundedGenres = await Promise.all(
