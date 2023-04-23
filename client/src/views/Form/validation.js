@@ -9,6 +9,8 @@ let validation = (gameData) => {
 
     if(!gameData.name.trim()){
         errors.name = "Este campo NO debe estar vacío.";
+    }else if(gameData.name.length < 2 && gameData.name.length < 30){
+        errors.name = "El nombre debe tener entre 2 y 30 caracteres.";
     }else if(!/^[a-zA-Z0-9\s]+$/.test(gameData.name)){
         errors.name = "Debe contener letras y números."
     }

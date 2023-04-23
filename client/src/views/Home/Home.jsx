@@ -17,18 +17,16 @@ const Home = ({allGenres}) => {
     const firstGameIndex = lastGameIndex - gamesPag;
     const currentGames = games.slice(firstGameIndex,lastGameIndex); 
     //-------------------------------------------------------------------
-    //onSearch-----------------------------------------------------------
-
-
-    //-------------------------------------------------------------------
 
     //Loading en Cards---------------------------------------------------
     const [loading, setLoading] = useState(true)
+
     const changeLoad = () =>{
         setTimeout(() => {
             setLoading(false);
         }, 2000);  
     }
+
     if(loading){
         changeLoad();
         return (

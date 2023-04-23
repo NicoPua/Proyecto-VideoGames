@@ -12,10 +12,12 @@ import { useEffect } from 'react';
 import { getAllGames, getAllPlatforms, getGenres } from './redux/actions';
 import Detail from './views/Detail/Detail';
 
+
 function App() {
   const allGenres = useSelector((state)=> state.genresGames);
   const dispatch = useDispatch();
   
+
   useEffect(() => {  
     dispatch(getAllGames());
   },[dispatch])
@@ -31,7 +33,7 @@ function App() {
   const location = useLocation();
   return (
     <div>
-      { location.pathname !== '/' && (<Route path='/'> <NavBar /> </Route>)}
+      { location.pathname !== '/' && (<Route path='/'> <NavBar/> </Route>)}
       <Route exact path="/" component={Landing}/>
 
       <Route path="/home" >

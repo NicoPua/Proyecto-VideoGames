@@ -67,7 +67,7 @@ const Form = ({allGenres}) => {
     return(
         <div className={style.globalCont}>
             <div className={style.contForm}>
-                <h2>ADD YOUR GAME</h2>
+                <h2>🕹️ ADD YOUR GAME 🕹️</h2>
 
                 <form onSubmit={handleSubmit} className={style.formCont}>
                     <label htmlFor="name">Name</label>
@@ -109,7 +109,8 @@ const Form = ({allGenres}) => {
             </div>
 
             <div className={style.infoValidation}>
-                <h2>Validaciones:</h2>
+                <h2>📌 Validaciones:</h2>
+                <p>- Deberán cumplirse las condiciones de validación para almacenar el nuevo videojuego en la base de datos, de lo contrario, los datos no se guardarán.</p>
                 <ul className={style.uList}>
                     <li className={errors.name? style.errorName: style.validName} >Name: {errors.name? errors.name : "Información correcta."}</li>
                     <li className={errors.image? style.errorImg: style.validImg}>Image: {errors.image? errors.image : "Información correcta."}</li>

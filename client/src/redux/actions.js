@@ -4,6 +4,7 @@ export const GET_ALLGAMES = "GET_ALLGAMES";
 export const GET_GAME_DETAIL = "GET_GAME_DETAIL";
 export const GET_GENRES = "GET_GENRES";
 export const GET_ALL_PLATFORMS = "GET_ALL_PLATFORMS";
+export const GET_GAME_BY_NAME = "GET_GAME_BY_NAME";
 
 export const ORDER_GAMES = "ORDER_GAMES";
 export const FILTER_GENDER_GAMES = "FILTER_GENDER_GAMES";
@@ -40,6 +41,13 @@ export const getAllPlatforms = () => {
         return dispatch({ type: GET_ALL_PLATFORMS, payload: response });
       };
 } 
+
+export const getGameByName = (name) => {
+    return async function(dispatch){
+        const response = (await axios.get(`http://localhost:3001/videogames?name=${name}`)).data;
+        return dispatch({type: GET_GAME_BY_NAME, payload: response});
+    }
+}
 
 export const createGames = (videogame) =>{
     return async function() {

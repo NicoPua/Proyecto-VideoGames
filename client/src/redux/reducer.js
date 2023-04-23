@@ -1,4 +1,4 @@
-import { GET_ALLGAMES, GET_GENRES, GET_GAME_DETAIL, GET_ALL_PLATFORMS, ORDER_GAMES, FILTER_GENDER_GAMES, FILTER_GAMES_DB_API, CLEAN_DETAIL} from "./actions";
+import { GET_ALLGAMES, GET_GENRES, GET_GAME_DETAIL, GET_ALL_PLATFORMS, GET_GAME_BY_NAME, ORDER_GAMES, FILTER_GENDER_GAMES, FILTER_GAMES_DB_API, CLEAN_DETAIL} from "./actions";
 
 const initialState = {
     allGames: [],
@@ -26,6 +26,10 @@ const rootReducer = (state = initialState,action) =>{
         case GET_ALL_PLATFORMS: return {
             ...state,
             allPlatforms: action.payload
+        }
+        case GET_GAME_BY_NAME: return{
+            ...state,
+            filterGames: action.payload
         }
         case CLEAN_DETAIL: return {
             ...state,
