@@ -1,3 +1,4 @@
+import style from "./Landing.module.css"
 import { useHistory } from "react-router-dom"
 
 const Landing = () => {
@@ -5,9 +6,11 @@ const Landing = () => {
     const intro = () => navigate.push("/home");
 
     return (
-      <div>
-        <h1>ESTOY EN LANDING</h1>
-        <button onClick={() => intro()}>BIENVENIDOS</button>
+      <div className={style.contGlobal}>
+        <div className={style.landing}>
+          <h2 className={style.title}>Bienvenido a Videogames API</h2>
+          <button className={style.enterButton} onClick={() => intro()}>START</button>
+        </div>
       </div>
     );
   }
