@@ -1,16 +1,18 @@
-import { useEffect } from "react";
+//import { useEffect } from "react";
 import useGameDetail from "../../hooks/useGameDetail";
 import style from "./Detail.module.css";
-import { getAllGames } from "../../redux/actions";
-import { useDispatch } from "react-redux";
+//import { getAllGames } from "../../redux/actions";
+//import { useDispatch } from "react-redux";
 
 const Detail = () => {
     const game = useGameDetail();
+    
+    /*Actualiza las cards de los games cuando estás en /detail.
     const dispatch = useDispatch();
 
     useEffect(()=>{
       dispatch(getAllGames())
-    },[dispatch])
+    },[dispatch])*/
 
     return (
       <div className={style.contGame}>

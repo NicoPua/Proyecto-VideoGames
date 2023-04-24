@@ -26,6 +26,8 @@ const Form = ({allGenres}) => {
         description:"Agregar información.",
         released: "Agregar información.",
         rating: "Agregar información.",
+        platforms: "Agregar información.",
+        genres: "Agregar información."
     })
 
     const handleChange = (event) => {
@@ -40,9 +42,11 @@ const Form = ({allGenres}) => {
         const isChecked = event.target.checked;
         const Value = event.target.value;
         if(isChecked){
-            setGameData({...gameData, platforms: [...gameData.platforms, event.target.value] })
+            setGameData({ ...gameData, platforms: [...gameData.platforms, event.target.value] })
+            setErrors(validation({ ...gameData, platforms: [...gameData.platforms, event.target.value] }))
         }else{
             setGameData({...gameData, platforms: gameData.platforms.filter((plat) => plat !== Value)})
+            setErrors(validation({...gameData, platforms: gameData.platforms.filter((plat) => plat !== Value)}))
         }
     }
     const AddGenres = (event) => {
@@ -50,16 +54,17 @@ const Form = ({allGenres}) => {
         const Value = event.target.value;
         if(isChecked){
             setGameData({...gameData, genres: [...gameData.genres, event.target.value] })
+            setErrors(validation({...gameData, genres: [...gameData.genres, event.target.value] }))
         }else{
             setGameData({...gameData, genres: gameData.genres.filter((gen) => gen !== Value)})
+            setErrors(validation({...gameData, genres: gameData.genres.filter((gen) => gen !== Value)}))
         }
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
         dispatch(createGames(gameData));
-        alert("The videogame was successfully created.")
     }
-
+    
     const ratingInCero = (event) =>{
         if(!gameData.rating){
             event.target.value = 0;
@@ -110,7 +115,11 @@ const Form = ({allGenres}) => {
                                 </>)     
                             })}
                     </div>
-                    <button>Create Game</button>
+                    {
+                        errors.flag === true
+                        ? <button disabled>Create Game</button> 
+                        : <button>Create Game</button>
+                    }
                 </form>
             </div>
 
@@ -123,6 +132,8 @@ const Form = ({allGenres}) => {
                     <li className={errors.description? style.errorDes : style.validDes}>Description: {errors.description? errors.description : "Información correcta."}</li>
                     <li className={errors.released? style.errorRel: style.validRel}>Released: {errors.released? errors.released : "Información correcta."}</li>
                     <li className={errors.rating? style.errorRat: style.validRat}>Rating: {errors.rating? errors.rating : "Información correcta."}</li>
+                    <li className={errors.genres? style.errorGen: style.validGen}>Genres: {errors.genres? errors.genres : "Información correcta."}</li>
+                    <li className={errors.platforms? style.errorPlat: style.validPlat}>Platforms: {errors.platforms? errors.platforms : "Información correcta."}</li>
                 </ul>
             </div>
         </div>

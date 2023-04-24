@@ -41,7 +41,7 @@
     background: url("https://c4.wallpaperflare.com/wallpaper/565/1022/376/background-spots-lines-light-wallpaper-preview.jpg");
     border-radius: 20px;
     width: 30%;
-    height: 60%;
+    height: 70%;
     box-shadow: -8px 9px 14px -3px rgba(0,0,0,0.75);
 
     display: flex;
@@ -56,14 +56,20 @@
     justify-content: space-around;
 }
 
-.validName, .validImg, .validDes, .validRel, .validRat{
+.validName, .validImg, .validDes, .validRel, .validRat, .validGen, .validPlat{
     padding-left: 10px;
     border-radius: 5px;
-    background-color:chartreuse;
+    background-color:rgb(179, 255, 103);
 }
 
-.errorName, .errorImg, .errorDes, .errorRel, .errorRat{
+.errorName, .errorRel, .errorRat, .errorGen, .errorPlat{
     padding-left: 10px;
     border-radius: 5px;
-    background-color: brown;
+    background-color:rgb(255, 100, 100);
+}
+
+.errorImg , .errorDes{
+    padding-left: 10px;
+    border-radius: 5px;
+    background-color:darkkhaki;
 }

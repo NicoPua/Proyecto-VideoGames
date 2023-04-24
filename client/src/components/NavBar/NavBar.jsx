@@ -3,7 +3,7 @@ import style from "./NavBar.module.css";
 
 import SearchBar from "../SearchBar/SearchBar";
 
-const NavBar = () => {
+const NavBar = ({setCurrentPage}) => {
 
   return (
     <div className={style.contBarra}>
@@ -22,7 +22,7 @@ const NavBar = () => {
       </div>
       
       <div>
-        <SearchBar/>
+        <SearchBar setCurrentPage={setCurrentPage}/>
       </div>
     </div>
   );

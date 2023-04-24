@@ -8,16 +8,17 @@ import Form from './views/Form/Form';
 
 import { Route, useLocation} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getAllGames, getAllPlatforms, getGenres } from './redux/actions';
 import Detail from './views/Detail/Detail';
 
 
 function App() {
   const allGenres = useSelector((state)=> state.genresGames);
+  const [currentPage,setCurrentPage] = useState(1)
+
   const dispatch = useDispatch();
   
-
   useEffect(() => {  
     dispatch(getAllGames());
   },[dispatch])
@@ -33,11 +34,11 @@ function App() {
   const location = useLocation();
   return (
     <div>
-      { location.pathname !== '/' && (<Route path='/'> <NavBar/> </Route>)}
+      { location.pathname !== '/' && (<Route path='/'> <NavBar setCurrentPage={setCurrentPage}/> </Route>)}
       <Route exact path="/" component={Landing}/>
 
       <Route path="/home" >
-        <Home allGenres={allGenres}/>
+        <Home allGenres={allGenres} currentPage={currentPage} setCurrentPage={setCurrentPage} />
       </Route>
 
       <Route path="/about" component={About}/>

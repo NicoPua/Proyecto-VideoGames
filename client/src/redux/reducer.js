@@ -1,11 +1,15 @@
-import { GET_ALLGAMES, GET_GENRES, GET_GAME_DETAIL, GET_ALL_PLATFORMS, GET_GAME_BY_NAME, ORDER_GAMES, FILTER_GENDER_GAMES, FILTER_GAMES_DB_API, CLEAN_DETAIL} from "./actions";
+import { GET_ALLGAMES, GET_GENRES, GET_GAME_DETAIL, GET_ALL_PLATFORMS, GET_GAME_BY_NAME,
+    ORDER_GAMES, FILTER_GENDER_GAMES, FILTER_GAMES_DB_API,
+    CLEAN_DETAIL, CLEAN_INFO_FILTERS} from "./actions";
 
 const initialState = {
     allGames: [],
     filterGames: [],
     genresGames: [],
     allPlatforms: [],
-    gameDetails: {}
+    gameDetails: {},
+
+    filterInfo: []
 }
 
 const rootReducer = (state = initialState,action) =>{
@@ -35,10 +39,14 @@ const rootReducer = (state = initialState,action) =>{
             ...state,
             gameDetails: {}
         };
+        case CLEAN_INFO_FILTERS: return{
+            ...state,
+            filterInfo: []
+        }
 
 
         case FILTER_GENDER_GAMES: 
-            const copyGames = state.allGames;
+            const copyGames = state.filterGames;   //AllGames
 
             const GamesFiltered = (action.payload === "Genres")? state.allGames : copyGames.filter((game)=>{
                 return !game.createinDb
@@ -47,21 +55,23 @@ const rootReducer = (state = initialState,action) =>{
             })
         return {
             ...state,
-            filterGames: GamesFiltered
+            filterGames: GamesFiltered,
+            filterInfo: (action.payload !== "Genres")? [...state.filterInfo, action.payload] : [...state.filterInfo]
         }
 
         case FILTER_GAMES_DB_API: 
-            const GamesDBAPI = [...state.allGames];
+            const GamesDBAPI = [...state.filterGames];     //AllGames
             const GamesFilter = (action.payload === "Stored Games")? GamesDBAPI.filter((game) => game.createinDb === false)
             : (action.payload === "Created Games")? GamesDBAPI.filter((game) => game.createinDb === true)
             : GamesDBAPI
         return {
             ...state,
-            filterGames: GamesFilter
+            filterGames: GamesFilter,
+            filterInfo: (action.payload !== "AllGames")? [...state.filterInfo, action.payload] : [...state.filterInfo]
         }
 
         case ORDER_GAMES: 
-            const Games = [...state.allGames];
+            const Games = [...state.filterGames];      //AllGames
             const Sort = (action.payload === 'Ascendente'? Games.sort((g1,g2) => {    
                     if (g1.name < g2.name) return 1;
                     if (g1.name > g2.name) return -1;  
@@ -77,7 +87,8 @@ const rootReducer = (state = initialState,action) =>{
                 }) : Games)
         return{
             ...state,
-            filterGames: Sort
+            filterGames: Sort,
+            filterInfo: (action.payload !== "AllGames")? [...state.filterInfo, action.payload] : [...state.filterInfo]
         }
 
         default: return {...state}

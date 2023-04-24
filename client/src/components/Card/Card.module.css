@@ -1,7 +1,9 @@
 .Card{
+    color:white;
     width: 20%;
     height: 300px;
-    background: url("https://img.freepik.com/vector-gratis/fondo-abstracto-diseno-papel-vintage_1048-14629.jpg?w=2000");
+    background: url("https://t4.ftcdn.net/jpg/03/59/55/79/360_F_359557922_GPydLSSfjdlK4oEGn1ScOsMLFoEDecTl.jpg");
+    background-size: cover;
     border-radius: 20px;
     box-shadow: -8px 9px 14px -3px rgba(0,0,0,0.75);
 

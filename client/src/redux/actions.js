@@ -11,7 +11,7 @@ export const FILTER_GENDER_GAMES = "FILTER_GENDER_GAMES";
 export const FILTER_GAMES_DB_API = "FILTER_GAMES_DB_API";
 
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
-//export const CLEAN_DATAGAMES = "CLEAN_DATAGAMES";
+export const CLEAN_INFO_FILTERS = "CLEAN_INFO_FILTERS";
 
 
 export const getAllGames = () => {
@@ -51,7 +51,7 @@ export const getGameByName = (name) => {
 
 export const createGames = (videogame) =>{
     return function() {
-        axios.post("http://localhost:3001/videogames", videogame)         //GUARDO la información de "character" en la URL/fav
+        axios.post("http://localhost:3001/videogames", videogame)     
         .catch((error)=> alert("The game could not be created: it doesn't meet the validation requirements."))
     }
  }
@@ -64,4 +64,4 @@ export const orderGames = (order) => { return { type: ORDER_GAMES, payload: orde
 
 export const cleanGameDetail = () => { return { type: CLEAN_DETAIL } };
 
-//export const cleanDataGames = () => { return {type: CLEAN_DATAGAMES }}
+export const cleanInfoFilters = () => { return {type: CLEAN_INFO_FILTERS }}
