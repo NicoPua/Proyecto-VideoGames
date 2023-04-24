@@ -13,7 +13,7 @@ const useGameDetail = () => {
         return () => {
             dispatch(cleanGameDetail())
         }
-    },[idGame,dispatch])
+    },[idGame])
 
     return gameDetails;
 }

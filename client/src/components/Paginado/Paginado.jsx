@@ -14,11 +14,11 @@ const Paginado = ({currentPage,setCurrentPage,cantGames, gamesPag}) => {
         : <></>}
 
         {pags.map((page,index)=>{
-            return(
-                <button key={index} onClick={()=> setCurrentPage(page)} className={ page === currentPage? style.buttonC : style.button}>
-                    {page}
-                </button>
-            )
+          return(
+            <button key={index} onClick={()=> setCurrentPage(page)} className={ page === currentPage? style.buttonC : style.button}>
+              {page}
+            </button>
+          )
         })}
 
         {currentPage !== Math.ceil(cantGames/gamesPag)

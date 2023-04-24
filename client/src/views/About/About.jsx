@@ -19,8 +19,8 @@ const About = () => {
           </div>
           <p className={style.aboutMe}>¡Hola! Mi nombre es Gonzalo Nicolás Púa, creador de esta API.
             Realicé esta aplicación con herramientas que me brindó el Bootcamp de SoyHenry.<br/>
-            Soy técnico electrónico, aposté por SoyHenry porque decidí incorporarme al enorme mundo IT 
-            y así poder obtener con grandes oportunidades en este mundo nuevo. <br/>¡Espero que la API les sea agradable y puedan disfrutar los estilos
+            Soy técnico electrónico, aposté por SoyHenry porque decidí incorporarme al amplio sector IT 
+            y así poder obtener grandes oportunidades en este nuevo mundo. <br/>¡Espero que la API les sea agradable y puedan disfrutar los estilos
             y el diseño de cada componente!</p>
         </div>
       </div>

@@ -15,7 +15,7 @@ import Detail from './views/Detail/Detail';
 
 function App() {
   const allGenres = useSelector((state)=> state.genresGames);
-  const [currentPage,setCurrentPage] = useState(1)
+  const [currentPage,setCurrentPage] = useState(1);
 
   const dispatch = useDispatch();
   
@@ -38,7 +38,7 @@ function App() {
       <Route exact path="/" component={Landing}/>
 
       <Route path="/home" >
-        <Home allGenres={allGenres} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        <Home allGenres={allGenres} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
       </Route>
 
       <Route path="/about" component={About}/>

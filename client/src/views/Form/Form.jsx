@@ -7,6 +7,7 @@ import { createGames } from "../../redux/actions"
 import validation from "./validation"
 
 const Form = ({allGenres}) => {
+    const allVideogames = useSelector((state) => state.allGames);
     const allPlatforms = useSelector((state) => state.allPlatforms);
     const dispatch = useDispatch();
 
@@ -35,7 +36,7 @@ const Form = ({allGenres}) => {
         const value = event.target.value;
 
         setGameData({...gameData, [prop]: value})
-        setErrors(validation({...gameData, [prop]: value}))
+        setErrors(validation({...gameData, [prop]: value}, allVideogames))
     }
 
     const AddPlatform = (event) => {
@@ -43,10 +44,10 @@ const Form = ({allGenres}) => {
         const Value = event.target.value;
         if(isChecked){
             setGameData({ ...gameData, platforms: [...gameData.platforms, event.target.value] })
-            setErrors(validation({ ...gameData, platforms: [...gameData.platforms, event.target.value] }))
+            setErrors(validation({ ...gameData, platforms: [...gameData.platforms, event.target.value]}, allVideogames))
         }else{
             setGameData({...gameData, platforms: gameData.platforms.filter((plat) => plat !== Value)})
-            setErrors(validation({...gameData, platforms: gameData.platforms.filter((plat) => plat !== Value)}))
+            setErrors(validation({...gameData, platforms: gameData.platforms.filter((plat) => plat !== Value)},  allVideogames))
         }
     }
     const AddGenres = (event) => {
@@ -54,21 +55,16 @@ const Form = ({allGenres}) => {
         const Value = event.target.value;
         if(isChecked){
             setGameData({...gameData, genres: [...gameData.genres, event.target.value] })
-            setErrors(validation({...gameData, genres: [...gameData.genres, event.target.value] }))
+            setErrors(validation({...gameData, genres: [...gameData.genres, event.target.value] }, allVideogames))
         }else{
             setGameData({...gameData, genres: gameData.genres.filter((gen) => gen !== Value)})
-            setErrors(validation({...gameData, genres: gameData.genres.filter((gen) => gen !== Value)}))
+            setErrors(validation({...gameData, genres: gameData.genres.filter((gen) => gen !== Value)}, allVideogames))
         }
     }
 
-    const handleSubmit = (event) => {
-        dispatch(createGames(gameData));
-    }
-    
+    const handleSubmit = (event) => dispatch(createGames(gameData));
     const ratingInCero = (event) =>{
-        if(!gameData.rating){
-            event.target.value = 0;
-        }
+        if(!gameData.rating) event.target.value = 0;    
     }
     
     return(

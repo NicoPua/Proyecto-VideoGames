@@ -1,8 +1,7 @@
 .Card{
-    color:white;
     width: 20%;
     height: 300px;
-    background: url("https://t4.ftcdn.net/jpg/03/59/55/79/360_F_359557922_GPydLSSfjdlK4oEGn1ScOsMLFoEDecTl.jpg");
+    background: url("https://media.istockphoto.com/id/1333010525/vector/simple-flat-pixel-art-illustration-of-cartoon-outdoor-landscape-background-pixel-arcade.jpg?s=612x612&w=0&k=20&c=uTGqB9fhmjzaNd17EGRHYU04_70K7a3M8ilRoJjDwtY=");
     background-size: cover;
     border-radius: 20px;
     box-shadow: -8px 9px 14px -3px rgba(0,0,0,0.75);
@@ -11,8 +10,14 @@
     flex-direction: column;
     align-items: center;
 
+    transition: all 0.2s ease-out;
+    
     margin: 5px;
 }
+
+.Card:hover {
+    transform: scale(1.1);
+  }
 
 .imgCards{
     width: 90%;

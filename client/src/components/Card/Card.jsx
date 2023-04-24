@@ -19,8 +19,7 @@ const Card = ({id,name,genres,image,rating,createinDb}) => {
                 <p>Genre: {(genres.map((genre)=> genre.name)).toString()}</p>
                 <p>Rating: {rating.slice(0,4)}</p>
             </>
-            }
-            
+            }   
         </div>
     )
 }
