@@ -11,7 +11,7 @@ const createVideogame = async ({id,name,description,genres,platforms,image,relea
             }
         }
     })
-    if(existVideogame.length) return "There is already a game with that name.";
+    if(existVideogame.length) throw new Error("There is already a game with that name.");
 
     const newVideogame = await Videogame.create({id,name,description,platforms,image,released,rating});
    
