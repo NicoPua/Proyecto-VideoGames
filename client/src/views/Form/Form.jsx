@@ -69,7 +69,7 @@ const Form = ({allGenres, allPlatforms}) => {
     return(
         <div className={style.globalCont}>
             <div className={style.contForm}>
-                <h2>🕹️ ADD YOUR GAME 🕹️</h2>
+                <h2 className={style.title}>🕹️ ADD YOUR GAME 🕹️</h2>
                 
                 <form onSubmit={handleSubmit} className={style.formData}>
                     <label htmlFor="name">Name</label>

@@ -10,7 +10,7 @@
 }
 
 .contForm{
-    background: url("https://c4.wallpaperflare.com/wallpaper/703/42/453/light-background-haze-green-wallpaper-preview.jpg");
+    background: url("https://wallpapercave.com/wp/wp5631426.jpg");
     background-size: cover;
     box-shadow: -8px 9px 14px -3px rgba(0,0,0,0.75);
     margin-top: 2%;
@@ -25,15 +25,23 @@
     align-items: center;
 }
 
+.title{
+    color: white;
+    text-shadow: 0 0 6px #000000;
+}
+
 .formData{
+    color: white;
     display: flex;
     flex-direction: column;
     width: 80%;
 }
 
 .contPlatforms, .contGenres{
+    color: black;
     height: 10%;
-    background-color: rgb(250, 207, 154);
+    background: url("https://img.freepik.com/free-vector/vibrant-summer-ombre-background-vector_53876-105765.jpg");
+    background-size: cover;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -44,7 +52,7 @@
     margin-top: 100px;
     padding-left: 30px;
     padding-right: 20px;
-    background: url("https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1409.jpg");
+    background: url("https://wallpaperaccess.com/full/3010046.jpg");
     background-size: cover;
     border-radius: 20px;
     width: 30%;

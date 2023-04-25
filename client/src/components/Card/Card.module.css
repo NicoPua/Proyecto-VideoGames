@@ -1,6 +1,7 @@
 .Card{
     width: 20%;
     height: 300px;
+    margin: 5px;
     background: url("https://w7.pngwing.com/pngs/569/779/png-transparent-chart-abstract-background-purple-texture-other-thumbnail.png");
     background-size: cover;
     border-radius: 20px;
@@ -9,10 +10,8 @@
     display:flex;
     flex-direction: column;
     align-items: center;
-
-    transition: all 0.2s;
     
-    margin: 5px;
+    transition: all 0.2s;
 }
 
 .Card:hover {
