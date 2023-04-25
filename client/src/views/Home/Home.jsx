@@ -41,14 +41,14 @@ const Home = ({allGenres,currentPage,setCurrentPage}) => {
                             />
                         );
                     }): (games.length === 0 && filterInfo.length !== 0)
-                    ? <>
+                    ? 
                         <div className={style.textAlert}><h2>There are no video games with those filters applied.</h2></div>
-                    </>:<>
+                    :
                         <div className={style.contLoading}>
                             <h2>Loading...</h2>
                             <img className={style.imgChargeGame} src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" alt="gif"/>
                         </div>  
-                    </>}
+                    }
                 </div>    
             </div>
         </div>

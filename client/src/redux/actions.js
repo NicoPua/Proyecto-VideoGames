@@ -44,8 +44,12 @@ export const getAllPlatforms = () => {
 
 export const getGameByName = (name) => {
     return async function(dispatch){
-        const response = (await axios.get(`http://localhost:3001/videogames?name=${name}`)).data;
-        return dispatch({type: GET_GAME_BY_NAME, payload: response});
+        try {
+            const response = (await axios.get(`http://localhost:3001/videogames?name=${name}`)).data;
+            return dispatch({type: GET_GAME_BY_NAME, payload: response});
+        } catch (error) {
+            alert(error.response.data.error);
+        }
     }
 }
 

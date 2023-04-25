@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getGameByName } from "../../redux/actions";
 
+
 const SearchBar = ({setCurrentPage}) => {
   const [name,setName] = useState("");
+ 
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
