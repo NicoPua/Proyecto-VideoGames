@@ -48,6 +48,7 @@ export const getGameByName = (name) => {
             const response = (await axios.get(`http://localhost:3001/videogames?name=${name}`)).data;
             return dispatch({type: GET_GAME_BY_NAME, payload: response});
         } catch (error) {
+            console.log(error)
             alert(error.response.data.error);
         }
     }
