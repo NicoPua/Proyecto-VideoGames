@@ -6,9 +6,8 @@ import { createGames } from "../../redux/actions"
 
 import validation from "./validation"
 
-const Form = ({allGenres}) => {
+const Form = ({allGenres, allPlatforms}) => {
     const allVideogames = useSelector((state) => state.allGames);
-    const allPlatforms = useSelector((state) => state.allPlatforms);
     const dispatch = useDispatch();
 
     const [gameData,setGameData] = useState({
@@ -71,8 +70,8 @@ const Form = ({allGenres}) => {
         <div className={style.globalCont}>
             <div className={style.contForm}>
                 <h2>🕹️ ADD YOUR GAME 🕹️</h2>
-
-                <form onSubmit={handleSubmit} className={style.formCont}>
+                
+                <form onSubmit={handleSubmit} className={style.formData}>
                     <label htmlFor="name">Name</label>
                     <input type="text" name="name" onChange={handleChange} value={gameData.name}/>
 
@@ -83,13 +82,13 @@ const Form = ({allGenres}) => {
                     <textarea name="description" onChange={handleChange} value={gameData.description}></textarea>
 
                     <label htmlFor="platforms">Platforms:</label>
-                    <div>
+                    <div className={style.contPlatforms}>
                         {allPlatforms?.map((plat)=>{
-                                return (<>
-                                    <input type="checkbox" onClick={(event) => AddPlatform(event)} value={plat}/>
-                                    <label key={plat} htmlFor={plat}>{plat}</label>
-                                </>)     
-                            })}
+                            return (<div>
+                                <input type="checkbox" onClick={(event) => AddPlatform(event)} value={plat}/>
+                                <label key={plat} htmlFor={plat}>{plat}</label>
+                            </div>)     
+                        })}
                     </div>
 
                     <label htmlFor="released">Released:</label>
@@ -103,25 +102,24 @@ const Form = ({allGenres}) => {
                         value={gameData.rating}></input>
 
                     <label htmlFor="genres">Choose your favorites Genres:</label>      
-                    <div>
+                    <div className={style.contGenres}>
                         {allGenres?.map((genre)=>{
-                                return (<>
+                                return (<div>
                                     <input type="checkbox" onClick={(event) => AddGenres(event)} value={genre}/>
                                     <label htmlFor={genre}>{genre}</label>
-                                </>)     
+                                </div>)     
                             })}
                     </div>
-                    {
-                        errors.flag === true
-                        ? <button disabled>Create Game</button> 
-                        : <button>Create Game</button>
-                    }
+                    {errors.flag === true? <button disabled>Create Game</button> : <button>Create Game</button>}
                 </form>
             </div>
 
             <div className={style.infoValidation}>
-                <h2>📌 Validaciones:</h2>
-                <p>- Deberán cumplirse las condiciones de validación para almacenar el nuevo videojuego en la base de datos, de lo contrario, los datos no se guardarán.</p>
+                <div className={style.titleInfo}>
+                    <h2>📌 Validaciones:</h2>
+                    <p>- Deberán cumplirse las condiciones de validación para almacenar el nuevo videojuego
+                        en la base de datos, de lo contrario, los datos no se guardarán.</p>
+                </div>
                 <ul className={style.uList}>
                     <li className={errors.name? style.errorName: style.validName} >Name: {errors.name? errors.name : "Información correcta."}</li>
                     <li className={errors.image? style.errorImg: style.validImg}>Image: {errors.image? errors.image : "Información correcta."}</li>

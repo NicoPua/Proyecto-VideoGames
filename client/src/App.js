@@ -15,6 +15,7 @@ import Detail from './views/Detail/Detail';
 
 function App() {
   const allGenres = useSelector((state)=> state.genresGames);
+  const allPlatforms = useSelector((state) => state.allPlatforms);
   const [currentPage,setCurrentPage] = useState(1);
 
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ function App() {
       <Route path="/detail/:idGame" component={Detail}/>
       
       <Route path="/create">
-        <Form allGenres={allGenres}/>
+        <Form allGenres={allGenres} allPlatforms={allPlatforms}/>
       </Route>
     </div>  
   );
