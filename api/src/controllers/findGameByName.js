@@ -8,9 +8,13 @@ const {API_KEY} = process.env;
 const findGameByName = async (name) =>{
     const cleanGameAPI = [];
     let gameByNameAPI = (await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${name}`)).data.results;
-    
-    gameByNameAPI = await cleanDataGame(gameByNameAPI);                     //Limpio y filtro los datos que necesito.
-    for (let i = 0; i < 15; i++) { cleanGameAPI[i] = gameByNameAPI[i] }     //Filtro los primeros 15 juegos en un nuevo array.
+
+    gameByNameAPI = await cleanDataGame(gameByNameAPI);      //Limpio y filtro los datos que necesito.
+    for (let i = 0; (i < 15 && i < gameByNameAPI.length); i++) {                           //Filtro los primeros 15 juegos en un nuevo array.
+        if(gameByNameAPI[i] !== null || gameByNameAPI[i] !== undefined){
+            cleanGameAPI[i] = gameByNameAPI[i]
+        }
+    }     
 
     const gameByNameBD = await Videogame.findAll({        //Busco el name del juego en la DB
         where: { name: {[Op.iLike]: name} },
