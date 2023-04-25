@@ -5,8 +5,8 @@ const getPlatforms = async (req,res) => {
         let newArr = [];
         let aux = 0;
         const allGames = await findAllVideoGames();
-        allGames.map((game)=>{
-            if(aux <= game.platforms.length ){
+        allGames.map((game)=>{                    //Mapeo en los juegos que tengo para buscar todas las platforms.
+            if(aux < game.platforms.length ){    //
                 aux = game.platforms.length;
                 newArr = game.platforms;
             }
