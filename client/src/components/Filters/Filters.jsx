@@ -22,7 +22,7 @@ const Filters = ({allGenres, setCurrentPage, filterInfo}) => {
     } 
 
     const showAllVideogames = () =>{
-        dispatch(cleanInfoFilters())
+        dispatch(cleanInfoFilters());
         dispatch(getAllGames());
     }
 

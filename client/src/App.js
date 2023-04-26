@@ -43,6 +43,7 @@ function App() {
       </Route>
 
       <Route path="/about" component={About}/>
+
       <Route path="/detail/:idGame" component={Detail}/>
       
       <Route path="/create">

@@ -1,5 +1,6 @@
 import axios from "axios";
 
+//ACTION TYPES
 export const GET_ALLGAMES = "GET_ALLGAMES";
 export const GET_GAME_DETAIL = "GET_GAME_DETAIL";
 export const GET_GENRES = "GET_GENRES";
@@ -13,7 +14,7 @@ export const FILTER_GAMES_DB_API = "FILTER_GAMES_DB_API";
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
 export const CLEAN_INFO_FILTERS = "CLEAN_INFO_FILTERS";
 
-
+//ACTION CREATORS
 export const getAllGames = () => {
     return async function (dispatch) {
         const response = (await axios.get(`http://localhost:3001/videogames`)).data;
@@ -48,7 +49,7 @@ export const getGameByName = (name) => {
             const response = (await axios.get(`http://localhost:3001/videogames?name=${name}`)).data;
             return dispatch({type: GET_GAME_BY_NAME, payload: response});
         } catch (error) {
-            console.log(error)
+            console.log(error);
             alert(error.response.data.error);
         }
     }
