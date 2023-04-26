@@ -13,9 +13,7 @@ const findVideogameByID = async (idValue,idType) =>{
                 attributes: []
             }
         }})
-    
         return arrGameDB;
-
     }else if(idType == 'API'){
         let arrGameAPI = (await axios.get(`https://api.rawg.io/api/games/${idValue}?key=${API_KEY}`)).data;
         const cleanedData = cleanDataGameAPI(arrGameAPI);
