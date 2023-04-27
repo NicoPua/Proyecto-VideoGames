@@ -23,7 +23,7 @@ const Detail = () => {
             {(game.createinDb === false)? <>
               <p>ID: {game.id}</p>
               <p>Platforms: {game.platforms?.toString()}</p>
-              <p >Description: {game.description}</p> 
+              <p>Description: {game.description}</p> 
               <p>Released: {game.released}</p>
               <p>Rating: {game.rating}</p>
               <p>Genres: {game.genres?.toString()}</p>
