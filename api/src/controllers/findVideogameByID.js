@@ -5,12 +5,12 @@ const { API_KEY } = process.env;
 
 const findVideogameByID = async (idValue,idType) =>{
     if(idType == 'DB'){
-        const arrGameDB = await Videogame.findByPk(idValue,{
-            include: {
-            model: Genre,
-            attributes: ["name"],
+        const arrGameDB = await Videogame.findByPk(idValue,{        //Busco en la DB por PrimaryKey.
+            include: {                        //Especifico que quiero incluir una tabla relacionada.
+            model: Genre,                     //Modelo que quiero incluir, en este caso, Genre.
+            attributes: ["name"],             //Incluyo el atributo "name" de Genre
             through: {
-                attributes: []
+                attributes: []                //No incluyo los atributos de la tabla intermedia en la propiedad "Genres"
             }
         }})
         return arrGameDB;

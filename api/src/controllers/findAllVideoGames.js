@@ -5,11 +5,11 @@ const gamesPageFilter = require("../auxFunctions/gamesPagesFilter.js");
 const findAllVideoGames = async () => {
     let allGamesAPI = await gamesPageFilter();
     const allGamesDB = await Videogame.findAll({
-        include: {
-            model: Genre,
-            attributes: ["name"],
+        include: {                          //Especifico que quiero incluir una tabla relacionada.
+            model: Genre,                   //Modelo que quiero incluir, en este caso, Genre.
+            attributes: ["name"],           //Incluyo el atributo "name" de Genre
             through: {
-                attributes: []
+                attributes: []              //No incluyo los atributos de la tabla intermedia en la propiedad "Genres"
             }
         }
     }); 

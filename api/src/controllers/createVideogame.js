@@ -29,7 +29,7 @@ const createVideogame = async ({id,name,description,genres,platforms,image,relea
             return searchedGenre;                       //Retorno el género o los géneros válidos. 
         })
     )
-    await newVideogame.addGenre(foundedGenres);     //Relaciono ambos modelos 
+    await newVideogame.addGenres(foundedGenres);        //Agrego los géneros mediante un método creado por sequelize a newVideogame 
     return newVideogame;
 }
 
