@@ -6,18 +6,15 @@ const Filters = ({allGenres, setCurrentPage, filterInfo}) => {
     const dispatch = useDispatch();
     
     const ordenamiento = (event) => {
-        event.preventDefault();
-        dispatch(orderGames(event.target.value))
+        dispatch(orderGames(event.target.value))    //Hago dispatch a OrderGames para ordenar los juegos según el filtro aplicado.
         setCurrentPage(1);
     }
     const filterGenre = (event) =>{ 
-        event.preventDefault();
-        dispatch(filterGenres(event.target.value))
+        dispatch(filterGenres(event.target.value))  //Hago dispatch a filterGenres para filtrar los juegos según el género.
         setCurrentPage(1);
     }
     const filterDbAPI = (event) => { 
-        event.preventDefault();
-        dispatch(filterGamesDBorAPI(event.target.value))
+        dispatch(filterGamesDBorAPI(event.target.value)) //Hago dispatch a filterGamesDBorAPI para filtrar los juegos según el tipo.
         setCurrentPage(1);
     } 
 

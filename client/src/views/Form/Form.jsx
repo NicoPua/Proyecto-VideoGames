@@ -61,9 +61,12 @@ const Form = ({allGenres, allPlatforms}) => {
         }
     }
 
-    const handleSubmit = (event) => dispatch(createGames(gameData));
+    const handleSubmit = (event) => {
+        if(gameData.name === "") event.preventDefault();      //Sirve para que la página no haga refresh por default.
+        dispatch(createGames(gameData));
+    }
     const ratingInCero = (event) =>{
-        if(!gameData.rating) event.target.value = 0;    
+        if(!gameData.rating) event.target.value = 0;   // 
     }
     
     return(
