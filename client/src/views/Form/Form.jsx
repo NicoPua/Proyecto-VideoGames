@@ -66,7 +66,7 @@ const Form = ({allGenres, allPlatforms}) => {
         dispatch(createGames(gameData));
     }
     const ratingInCero = (event) =>{
-        if(!gameData.rating) event.target.value = 0;   // 
+        if(!gameData.rating) event.target.value = 0;   
     }
     
     return(
