@@ -64,7 +64,6 @@ const rootReducer = (state = initialState,action) =>{
             const GamesFilter = (action.payload === "Stored Games")? GamesDBAPI.filter((game) => game.createinDb === false)
             : (action.payload === "Created Games")? GamesDBAPI.filter((game) => game.createinDb === true)
             : GamesDBAPI
-            console.log(GamesDBAPI);
         return {
             ...state,
             filterGames: GamesFilter,
