@@ -48,7 +48,7 @@ const rootReducer = (state = initialState,action) =>{
         case FILTER_GENDER_GAMES: 
             const copyGames = state.filterGames;   //AllGames
 
-            const GamesFiltered = (action.payload === "Genres")? state.allGames : copyGames.filter((game)=>{
+            const GamesFiltered = (action.payload === "Genres")? copyGames : copyGames.filter((game)=>{
                 return !game.createinDb
                 ? game.genres.includes(action.payload)  //Para juegos API
                 : game.Genres.map((genre)=> genre.name).includes(action.payload); //Para juegos DB
@@ -56,18 +56,20 @@ const rootReducer = (state = initialState,action) =>{
         return {
             ...state,
             filterGames: GamesFiltered,
-            filterInfo: (action.payload !== "Genres")? [...state.filterInfo, action.payload] : [...state.filterInfo]
+            filterInfo: (action.payload === "Genres")? [...state.filterInfo]
+                : (state.filterInfo.includes(action.payload))? [...state.filterInfo] : [...state.filterInfo, action.payload] 
         }
 
         case FILTER_GAMES_DB_API: 
-            const GamesDBAPI = [...state.allGames];     //AllGames
+            const GamesDBAPI = [...state.allGames];    
             const GamesFilter = (action.payload === "Stored Games")? GamesDBAPI.filter((game) => game.createinDb === false)
             : (action.payload === "Created Games")? GamesDBAPI.filter((game) => game.createinDb === true)
             : GamesDBAPI
         return {
             ...state,
             filterGames: GamesFilter,
-            filterInfo: (action.payload !== "AllGames")? [...state.filterInfo, action.payload] : [...state.filterInfo]
+            filterInfo: (action.payload === "AllGames")? [] : [action.payload]
+            
         }
 
         case ORDER_GAMES: 
@@ -87,8 +89,7 @@ const rootReducer = (state = initialState,action) =>{
                 }) : Games)
         return{
             ...state,
-            filterGames: Sort,
-            filterInfo: (action.payload !== "AllGames")? [...state.filterInfo, action.payload] : [...state.filterInfo]
+            filterGames: Sort
         }
 
         default: return {...state}
