@@ -4,14 +4,12 @@ import style from "./Home.module.css"   //CSS
 import Paginado from "../../components/Paginado/Paginado.jsx";
 import Filters from "../../components/Filters/Filters.jsx";
 
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { cleanInfoFilters } from "../../redux/actions.js";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Home = ({allGenres,currentPage,setCurrentPage}) => {
     const games = useSelector((state) => state.filterGames);
     const filterInfo = useSelector((state)=> state.filterInfo);
-    const dispatch = useDispatch();
     //Paginado----------------------------------------------------------
     const [gamesPag] = useState(15);    
     const lastGameIndex = currentPage * gamesPag;
@@ -43,7 +41,7 @@ const Home = ({allGenres,currentPage,setCurrentPage}) => {
                                 createinDb={createinDb}
                             />
                         );
-                    }): (games.length === 0 && filterInfo.length !== 0)
+                    }): (games.length === 0 && (filterInfo.length !== 0))
                     ? 
                         <div className={style.textAlert}><h2>There are no video games with those filters applied.</h2></div>
                     : 
