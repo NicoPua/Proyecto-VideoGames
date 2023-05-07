@@ -74,7 +74,12 @@ const Filters = ({allGenres, setCurrentPage, filterInfo}) => {
                 {filterInfo.length === 0? <li>Sin filtros.</li> 
                 : (filterInfo.length > 6)? <li>Límite de filtros.</li>
                 : filterInfo.map((filter)=>{
-                    return (<li>{filter}</li>)
+                    return (
+                        <div>
+                            <button>X</button>
+                            <li>{filter}</li>
+                        </div>
+                    )
                 })}
             </ul>
         </div>
