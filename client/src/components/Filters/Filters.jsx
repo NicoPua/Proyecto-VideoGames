@@ -1,6 +1,6 @@
 import style from "./Filters.module.css";
 import { useDispatch } from "react-redux";
-import { cleanInfoFilters, filterGamesDBorAPI, filterGenres, getAllGames, orderGames } from "../../redux/actions"
+import { cleanInfoFilters, deleteGenre, filterGamesDBorAPI, filterGenres, getAllGames, orderGames } from "../../redux/actions"
 
 const Filters = ({allGenres, setCurrentPage, filterInfo}) => {
     const dispatch = useDispatch();
@@ -23,25 +23,12 @@ const Filters = ({allGenres, setCurrentPage, filterInfo}) => {
         dispatch(getAllGames());
     }
 
+    const onCloseFilter = (filter) =>{
+        dispatch(deleteGenre(filter));
+    }
+
     return (
         <div className={style.contFilters}>
-            <div className={style.imgsCont}>
-                <a target="_blank" rel="noopener noreferrer" href='https://www.soyhenry.com/'>
-                    <img alt="img" className={style.imgs} src="https://startupeable.com/directorio/wp-content/uploads/2021/03/d4face92a7abc37a414e0bc3acf4ff23ec588438.png"/>
-                </a>
-
-                <a target="_blank" rel="noopener noreferrer" href='https://github.com/NicoPua'>
-                    <img alt="img" className={style.imgs} src="https://cdn-icons-png.flaticon.com/512/25/25231.png"/>
-                </a>
-
-                <a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/in/gonzalo-nicolas-pua-a962901b6/'>
-                    <img alt="img" className={style.imgs} src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/LinkedIn_icon_circle.svg/800px-LinkedIn_icon_circle.svg.png"/>
-                </a>
-
-                <a target="_blank" rel="noopener noreferrer" href='https://es.reactjs.org/'>
-                    <img alt="img" className={style.imgs} src="http://ibthemespro.com/docs/beny/img/side-nav/cmm4.png"/>
-                </a>
-            </div> 
             <p>Filtrar juegos por:</p>
             <label>*Órden Alfabético:</label>
             <select name="Order" onChange={(event) => ordenamiento(event)}>
@@ -70,18 +57,18 @@ const Filters = ({allGenres, setCurrentPage, filterInfo}) => {
             <br/>
             <button onClick={()=>showAllVideogames()}>Mostrar todos los Videojuegos</button>
             <p>Filtros Aplicados:</p>
-            <ul>
+            <div className={style.contInfoFilters}>
                 {filterInfo.length === 0? <li>Sin filtros.</li> 
                 : (filterInfo.length > 6)? <li>Límite de filtros.</li>
                 : filterInfo.map((filter)=>{
                     return (
-                        <div>
-                            <button>X</button>
-                            <li>{filter}</li>
+                        <div className={style.closeFilter}>
+                            <button className={style.delButton} onClick={()=>onCloseFilter(filter)}>❌</button>
+                            <p>{filter}</p>
                         </div>
                     )
                 })}
-            </ul>
+            </div>
         </div>
     );
   }
