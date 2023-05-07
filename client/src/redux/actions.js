@@ -8,8 +8,10 @@ export const GET_ALL_PLATFORMS = "GET_ALL_PLATFORMS";
 export const GET_GAME_BY_NAME = "GET_GAME_BY_NAME";
 
 export const ORDER_GAMES = "ORDER_GAMES";
-export const FILTER_GENDER_GAMES = "FILTER_GENDER_GAMES";
 export const FILTER_GAMES_DB_API = "FILTER_GAMES_DB_API";
+export const FILTER_GENDER_GAMES = "FILTER_GENDER_GAMES";
+export const DELETE_GENRE = "DELETE_GENRE"
+
 
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
 export const CLEAN_INFO_FILTERS = "CLEAN_INFO_FILTERS";
@@ -63,6 +65,7 @@ export const createGames = (videogame) =>{
  }
 
 export const filterGenres = (gender) => { return { type: FILTER_GENDER_GAMES, payload: gender } }
+export const deleteGenre = (genre) => { return { type: DELETE_GENRE, payload: genre} }
 
 export const filterGamesDBorAPI = (datatype) =>{ return { type: FILTER_GAMES_DB_API , payload: datatype}}
 
