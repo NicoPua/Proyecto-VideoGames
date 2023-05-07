@@ -1,5 +1,5 @@
 import { GET_ALLGAMES, GET_GENRES, GET_GAME_DETAIL, GET_ALL_PLATFORMS, GET_GAME_BY_NAME,
-    ORDER_GAMES, FILTER_GENDER_GAMES, FILTER_GAMES_DB_API,
+    ORDER_GAMES, FILTER_GENDER_GAMES, FILTER_GAMES_DB_API, DELETE_GENRE,
     CLEAN_DETAIL, CLEAN_INFO_FILTERS} from "./actions";
 
 const initialState = {
@@ -58,6 +58,20 @@ const rootReducer = (state = initialState,action) =>{
             filterGames: GamesFiltered,
             filterInfo: (action.payload === "Genres")? [...state.filterInfo]
                 : (state.filterInfo.includes(action.payload))? [...state.filterInfo] : [...state.filterInfo, action.payload] 
+        }
+
+        case DELETE_GENRE: 
+            const copyGamess = state.filterGames;   //AllGames
+
+            const FilteredGames = copyGamess.filter((game)=>{
+                return !game.createinDb
+                ? game.genres.filter((gen)=> gen !== action.payload)  //Para juegos API
+                : game.Genres.map((genre)=> genre.name).filter((gen)=>gen !== action.payload); //Para juegos DB
+            })
+        return {
+            ...state,
+            filterGames: FilteredGames,
+            filterInfo: state.filterInfo.filter((filt)=> filt !== action.payload)
         }
 
         case FILTER_GAMES_DB_API: 
